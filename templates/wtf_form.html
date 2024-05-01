@@ -1,0 +1,44 @@
+<html>
+
+<head> </head>
+
+<body>
+    <div>
+
+        {% for field, error in form.errors.items() %} <!-- Для высвечивания ошибок валидации-->
+        {{ ', '.join(error) }}
+        {% endfor %}
+
+        <a href="{{ url_for('mapage')}}"><h3>Вернуться на главную?</h3></a>
+
+        <form method="post" enctype="multipart/form-data"> <!-- визуализация формы запроса post. 
+                            enctype="multipart/form-data" нужно только если в форме есть поле типа File Field. 
+                            Без enctype type(image) = str, А с ним type(image) = <FileStorage>   -->
+            <div> <!-- <div> - новая строка (модуль) для поля формы -->
+                {{ form.id.label}} {{form.id()}} 
+                <!-- {{ form.id.label}} - название рядом с (необязательно) -->
+                <!-- {{form.id()}} - вызов поля -->
+            </div>
+            
+            <div>
+                {{ form.name.label }} {{ form.name() }}
+            </div>
+            <div>
+                {% for choise in form.gender %}
+                <tr>
+                    <td> {{choise}} </td>
+                    <td> {{choise.label}} </td>
+                </tr>
+                {% endfor %}
+            </div>
+            <div>
+                {{form.image.label}} {{ form.image()}}
+            </div> 
+            <div>
+                {{form.submit() }} <!-- визуализация кнопки отправки формы-->
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

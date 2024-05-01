@@ -1,0 +1,23 @@
+<html>
+
+    <head> <!-- Описание html (не отображается) --></head>
+
+    <body>
+        <h1>All exist users</h1> <!-- Заголовок -->
+        
+        <!-- Создание таблицы -->
+        <table border="1" width = "600"> <!-- border - толщина граней таблицы, width - ширина столбца -->
+            <!-- TH - название колонки; TR - строка;  ТD - cоздание ячейки-->
+            <tr>  <th>ID</th> <th>Name</th> <th>Gender</th> <th>Photo</th>  </tr> <!-- Шапка таблицы -->
+
+            {% for user in data["diusers"] %}
+            <tr> <td>{{user["id"]}}</td>  <td>{{user["name"]}}</td>  <td>{{user["gender"]}}</td> <td> <img src="Wojak.png"> </td></tr>
+            {% endfor %}
+
+            <h4>Пользователей всего: {{allusers}}</h4>
+
+        </table>
+        <a href="{{url_for('mapage')}}"><h4>Вернуться на главную?</h4></a>
+    </body>
+
+</html>
